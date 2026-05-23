@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* Confetti Canvas */
+    
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -262,14 +262,14 @@
         <h1>Birthday Wisher</h1>
         <div class="subtitle">✨ Make Someone's Day Magical ✨</div>
 
-        <!-- Constant Name Display -->
+      
         <div class="person-card">
             <div class="label">🎉 Celebrating 🎉</div>
             <div class="constant-name" id="constantNameDisplay">Loading...</div>
             <div class="label">💝 Birthday Star 💝</div>
         </div>
 
-        <!-- Wish Message Container -->
+      
         <div id="wishContainer">
             <div class="wish-box" id="wishMessageBox" style="display: none;">
                 <div class="greeting">🎊 Happy Birthday! 🎊</div>
@@ -291,13 +291,9 @@
     </div>
 
     <script>
-        // ===========================================
-        // ⭐ CONSTANT NAME - CHANGE HERE ONLY ⭐
-        // ===========================================
-        const BIRTHDAY_PERSON_NAME = "Sir Bilal Hussain";  // 👈 Apni marzi ka name yahan likhein!
-        // ===========================================
-
-        // Beautiful birthday messages collection
+     
+        const BIRTHDAY_PERSON_NAME = "Sir Bilal Hussain"; 
+     
         const birthdayMessages = [
             "🎂 May your day be as sweet as cake and as bright as candles! Wishing you a fantastic year ahead! 🌟",
             "🎈 Another trip around the sun! May this year bring you endless joy, success, and happiness! 🚀",
@@ -310,19 +306,17 @@
             "🎨 You paint our lives with happiness! Today, we celebrate the masterpiece that is YOU! 🖼️",
             "🌈 Sending you a rainbow of good wishes, a sky full of happiness, and a lifetime of smiles! 🎁"
         ];
-
-        // Get random birthday message
         function getRandomBirthdayMessage(name) {
             const randomIndex = Math.floor(Math.random() * birthdayMessages.length);
             let message = birthdayMessages[randomIndex];
-            // Insert name in message if it contains placeholder or just add at start
+
             if (!message.includes(name)) {
                 message = `✨ Dear ${name}, ✨ ` + message;
             }
             return message;
         }
 
-        // DOM Elements
+
         const constantNameDisplay = document.getElementById('constantNameDisplay');
         const wishMessageBox = document.getElementById('wishMessageBox');
         const wishMessageText = document.getElementById('wishMessageText');
@@ -330,10 +324,8 @@
         const celebrateBtn = document.getElementById('celebrateBtn');
         const resetBtn = document.getElementById('resetBtn');
 
-        // Set the constant name in display
         constantNameDisplay.textContent = BIRTHDAY_PERSON_NAME;
 
-        // ========== CONFETTI SYSTEM (Professional & Smooth) ==========
         const canvas = document.getElementById('confetti-canvas');
         let ctx = canvas.getContext('2d');
         let animationId = null;
@@ -442,43 +434,41 @@
                 spawnConfetti(80, intensity * 0.7);
             }, 150);
         }
-
-        // ========== BIRTHDAY WISH FUNCTION ==========
         function sendBirthdayWish() {
-            // Get random message
+            
             const message = getRandomBirthdayMessage(BIRTHDAY_PERSON_NAME);
             wishMessageText.textContent = message;
 
-            // Show wish box with animation
+        
             if (wishMessageBox.style.display === 'none') {
                 wishMessageBox.style.display = 'block';
             } else {
-                // Replay animation
+                
                 wishMessageBox.style.animation = 'none';
                 setTimeout(() => {
                     wishMessageBox.style.animation = 'slideIn 0.5s ease-out';
                 }, 10);
             }
 
-            // Burst confetti on wish
+            
             burstConfetti(1.2);
 
-            // Add a little bounce effect on card
+            
             const card = document.querySelector('.birthday-card');
             card.style.transform = 'scale(1.02)';
             setTimeout(() => {
                 card.style.transform = '';
             }, 300);
 
-            // Optional: Show a sweet console message
+
             console.log(`🎉 Happy Birthday ${BIRTHDAY_PERSON_NAME}! 🎉`);
         }
 
-        // Extra celebration (just confetti + fun)
+        
         function extraCelebration() {
             burstConfetti(1.5);
 
-            // Add temporary excitement message if wish is visible
+        
             if (wishMessageBox.style.display !== 'none') {
                 const originalText = wishMessageText.textContent;
                 wishMessageText.textContent = originalText + " 🎉✨ PARTY MODE ACTIVATED! ✨🎉";
@@ -488,7 +478,7 @@
                     }
                 }, 2000);
             } else {
-                // If no wish showing, show a floating hint
+        
                 const hint = document.createElement('div');
                 hint.textContent = "🎊 Click 'Send Birthday Wish' first for full celebration! 🎊";
                 hint.style.position = 'fixed';
@@ -518,29 +508,29 @@
             }, 200);
         }
 
-        // Reset (hide wish box)
+    
         function resetWish() {
             wishMessageBox.style.display = 'none';
-            // Optional: reset message to default
+        
             wishMessageText.textContent = "May your day be filled with joy, laughter, and unforgettable moments!";
         }
 
-        // Event Listeners
+    
         wishBtn.addEventListener('click', sendBirthdayWish);
         celebrateBtn.addEventListener('click', extraCelebration);
         resetBtn.addEventListener('click', resetWish);
 
-        // Initialize canvas size
+    
         resizeCanvas();
 
-        // Small welcome confetti after page loads (just for fun)
+
         setTimeout(() => {
             if (!confettiActive) {
                 spawnConfetti(40, 0.4);
             }
         }, 500);
 
-        // Display name with style on console (developer love)
+        
         console.log(`%c🎂 HAPPY BIRTHDAY ${BIRTHDAY_PERSON_NAME}! 🎂`, 'color: #FF6B6B; font-size: 16px; font-weight: bold;');
         console.log('%cBirthday Wisher App Ready!', 'color: #4ECDC4; font-size: 14px;');
     </script>
